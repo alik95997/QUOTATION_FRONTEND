@@ -2,9 +2,9 @@ import { useState } from "react";
 
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
+import AdminDashboard from "./pages/admin/AdminDashboard" // Correct: uppercase 'A' in file path
 import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
-import AdminDashboard from "./pages/admin/adminDashboard";
 import ClientList from "./pages/admin/ClientList";
 import UserManagement from "./pages/admin/UserManagement";
 import ProfileSettings from "./pages/admin/ProfileSettings";
