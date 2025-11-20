@@ -190,7 +190,7 @@ const DashboardLayout = ({ children }) => {
         </header>
 
         {/* Page Content */}
-        <main className="p-6 overflow-auto">{children}</main>
+        <main className="px-3 py-1 overflow-auto">{children}</main>
       </div>
     </div>
   );

@@ -1,37 +1,30 @@
 import React from "react";
-import { AlertCircle } from "lucide-react";
 
+import Label from "../label/Label";
+import Input from "../Input/Input";
+import ErrorMessage from "../Error/ErrorMessage";
 const AddProduct = ({ formData, setFormData, errors, setErrors }) => {
   return (
     <form className="space-y-4">
       {/* Product Name / Category */}
       <div className="grid grid-cols-2 gap-4">
         <div className="relative">
-          <label className="font-medium text-sm">Product Name</label>
-          <input
+          <Label labelTitle="Product Name" />
+          <Input
             type="text"
+            placeholder="Mixing Paddles"
             value={formData.productName}
             onChange={(e) => {
               setFormData({ ...formData, productName: e.target.value });
               if (errors.productName) setErrors({ ...errors, productName: "" });
             }}
-            className={`w-full mt-1 px-3 py-1.5 border-2 rounded-lg bg-gray-50 
-              ${errors.productName ? "border-red-500" : "border-gray-300"}
-            `}
-            placeholder="Mixing Paddles"
+            error={!!errors.productName}
           />
-          {errors.productName && (
-            <>
-              <AlertCircle className="absolute right-3 top-[2.45rem] text-red-500 w-4 h-4 animate-slideIn" />
-              <p className="text-red-600 text-[12px] mt-1 animate-fadeIn">
-                {errors.productName}
-              </p>
-            </>
-          )}
+          {errors.productName && <ErrorMessage message={errors.productName} />}
         </div>
 
         <div className="relative">
-          <label className="font-medium text-sm">Category</label>
+          <Label labelTitle="Category" />
           <input
             type="text"
             value={formData.category}
@@ -44,21 +37,14 @@ const AddProduct = ({ formData, setFormData, errors, setErrors }) => {
             `}
             placeholder="Construction"
           />
-          {errors.category && (
-            <>
-              <AlertCircle className="absolute right-3 top-[2.45rem] text-red-500 w-4 h-4 animate-slideIn" />
-              <p className="text-red-600 text-[12px] mt-1 animate-fadeIn">
-                {errors.category}
-              </p>
-            </>
-          )}
+          {errors.category && <ErrorMessage message={errors.category} />}
         </div>
       </div>
 
       {/* Unit Measure / Quantity */}
       <div className="grid grid-cols-2 gap-4">
         <div className="relative">
-          <label className="font-medium text-sm">Unit Measure</label>
+          <Label labelTitle="Unit Measure" />
           <input
             type="text"
             value={formData.unitMeasure}
@@ -71,14 +57,7 @@ const AddProduct = ({ formData, setFormData, errors, setErrors }) => {
             `}
             placeholder="Pcs"
           />
-          {errors.unitMeasure && (
-            <>
-              <AlertCircle className="absolute right-3 top-[2.45rem] text-red-500 w-4 h-4 animate-slideIn" />
-              <p className="text-red-600 text-[12px] mt-1 animate-fadeIn">
-                {errors.unitMeasure}
-              </p>
-            </>
-          )}
+          {errors.unitMeasure && <ErrorMessage message={errors.unitMeasure} />}
         </div>
 
         <div className="relative">
@@ -95,14 +74,7 @@ const AddProduct = ({ formData, setFormData, errors, setErrors }) => {
             `}
             placeholder="15"
           />
-          {errors.quantity && (
-            <>
-              <AlertCircle className="absolute right-3 top-[2.45rem] text-red-500 w-4 h-4 animate-slideIn" />
-              <p className="text-red-600 text-[12px] mt-1 animate-fadeIn">
-                {errors.quantity}
-              </p>
-            </>
-          )}
+          {errors.quantity && <ErrorMessage message={errors.quantity} />}
         </div>
       </div>
 
@@ -122,14 +94,7 @@ const AddProduct = ({ formData, setFormData, errors, setErrors }) => {
             `}
             placeholder="Houston"
           />
-          {errors.cityProduct && (
-            <>
-              <AlertCircle className="absolute right-3 top-[2.45rem] text-red-500 w-4 h-4 animate-slideIn" />
-              <p className="text-red-600 text-[12px] mt-1 animate-fadeIn">
-                {errors.cityProduct}
-              </p>
-            </>
-          )}
+          {errors.cityProduct && <ErrorMessage message={errors.cityProduct} />}
         </div>
 
         <div className="relative">
@@ -148,12 +113,7 @@ const AddProduct = ({ formData, setFormData, errors, setErrors }) => {
             placeholder="+1-281-658-5421"
           />
           {errors.phoneProduct && (
-            <>
-              <AlertCircle className="absolute right-3 top-[2.45rem] text-red-500 w-4 h-4 animate-slideIn" />
-              <p className="text-red-600 text-[12px] mt-1 animate-fadeIn">
-                {errors.phoneProduct}
-              </p>
-            </>
+            <ErrorMessage message={errors.phoneProduct} />
           )}
         </div>
       </div>
@@ -174,14 +134,7 @@ const AddProduct = ({ formData, setFormData, errors, setErrors }) => {
             `}
             placeholder="15.00$"
           />
-          {errors.unitPrice && (
-            <>
-              <AlertCircle className="absolute right-3 top-[2.45rem] text-red-500 w-4 h-4 animate-slideIn" />
-              <p className="text-red-600 text-[12px] mt-1 animate-fadeIn">
-                {errors.unitPrice}
-              </p>
-            </>
-          )}
+          {errors.unitPrice && <ErrorMessage message={errors.unitPrice} />}
         </div>
 
         <div className="relative">
@@ -200,12 +153,7 @@ const AddProduct = ({ formData, setFormData, errors, setErrors }) => {
             placeholder="8%"
           />
           {errors.discountApplied && (
-            <>
-              <AlertCircle className="absolute right-3 top-[2.45rem] text-red-500 w-4 h-4 animate-slideIn" />
-              <p className="text-red-600 text-[12px] mt-1 animate-fadeIn">
-                {errors.discountApplied}
-              </p>
-            </>
+            <ErrorMessage message={errors.discountApplied} />
           )}
         </div>
       </div>
@@ -225,14 +173,7 @@ const AddProduct = ({ formData, setFormData, errors, setErrors }) => {
           `}
           placeholder="2%"
         />
-        {errors.taxApplied && (
-          <>
-            <AlertCircle className="absolute right-3 top-[2.45rem] text-red-500 w-4 h-4 animate-slideIn" />
-            <p className="text-red-600 text-[12px] mt-1 animate-fadeIn">
-              {errors.taxApplied}
-            </p>
-          </>
-        )}
+        {errors.taxApplied && <ErrorMessage message={errors.taxApplied} />}
       </div>
     </form>
   );

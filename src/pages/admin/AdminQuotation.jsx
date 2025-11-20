@@ -3,16 +3,15 @@ import CustomerDetail from "../../components/NewInvoice/CustomerDetails";
 import OrderSources from "../../components/NewInvoice/OrderSources";
 import AddProduct from "../../components/NewInvoice/AddProduct";
 import PriceSummary from "../../components/NewInvoice/PriceSummary";
-import { validateStep } from "../../utils/validationStep";
+import validate from "../../utils/validate";
 import DashboardLayout from "../../components/dashboardLayout/DashboardLayout";
 import Button from "../../components/CustomButton/Button";
 import { Send, Save, EyeClosed, Eye } from "lucide-react";
 import Logo from "../../assets/Vector.png";
 const AdminQuotation = () => {
   const [showPreview, setShowPreview] = useState(true);
-
   const [step, setStep] = useState(0);
-
+  const [errors, setErrors] = useState({});
   const steps = [
     { title: "Customer Details", component: CustomerDetail },
     { title: "Order Sources", component: OrderSources },
@@ -63,10 +62,8 @@ const AdminQuotation = () => {
     grandTotal: "",
   });
 
-  const [errors, setErrors] = useState({});
-
   const handleNext = () => {
-    const validateErrors = validateStep(step, formData);
+    const validateErrors = validate(step, formData);
     setErrors(validateErrors);
 
     if (Object.keys(validateErrors).length === 0) {
@@ -120,8 +117,8 @@ const AdminQuotation = () => {
 
   return (
     <DashboardLayout>
-      <div className="w-full lg:h-[calc(100vh-64px)] max-h-max  bg-white ">
-        <div className="flex justify-between items-center mb-3">
+      <div className="w-full max-h-max bg-white ">
+        <div className="flex justify-between items-center ">
           <h1 className="text-2xl font-semibold">New Invoice</h1>
 
           <div className="flex gap-3">

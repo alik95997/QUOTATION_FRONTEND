@@ -3,7 +3,7 @@ import React from "react";
 const Label = ({labelTitle}) => {
   return (
     <label className="flex flex-col gap-2">
-      <span className="font-medium">{labelTitle}</span>
+      <span className="font-medium text-[14px]">{labelTitle}</span>
     </label>
   );
 };

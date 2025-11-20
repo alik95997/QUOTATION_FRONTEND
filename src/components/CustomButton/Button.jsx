@@ -8,7 +8,7 @@ const Button = ({ icon, title, onClick, variant = "primary" }) => {
   return (
     <button
       onClick={onClick}
-      className={`font-medium flex items-center gap-1 py-2 px-3 rounded ${variants[variant]}`}
+      className={`font-medium flex items-center gap-1 py-2 px-3 rounded ${variants[variant]} cursor-pointer hover:opacity-80`}
     >
       {icon} {title}
     </button>

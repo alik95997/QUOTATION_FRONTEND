@@ -1,24 +1,16 @@
 import React from "react";
 import DashboardLayout from "../../components/dashboardLayout/DashboardLayout";
-import { BsFillQuestionSquareFill } from "react-icons/bs";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { FcApprove } from "react-icons/fc";
-import { CiSearch } from "react-icons/ci";
-import { CiFilter } from "react-icons/ci";
 import StatCard from "../../components/StatCard/StatCard";
 import Table from "../../components/Table/Table";
 import { FaPlusSquare } from "react-icons/fa";
-import { MdOutlinePendingActions } from "react-icons/md";
 import { TbCircleLetterT } from "react-icons/tb";
-
 import { FaUsers } from "react-icons/fa";
-import { CiShare2 } from "react-icons/ci";
-import { MdDelete } from "react-icons/md";
-import { MdEdit } from "react-icons/md";
 import SearchInput from "../../components/SearchInput/SearchInput";
 import BasicSelect from "../../components/BasicSelect/BasicSelect";
 import { useState } from "react";
-const ClientList = () => {
+const UserClientList = () => {
   const [statusFilter, setStatusFilter] = useState("");
 
   const columns = [
@@ -116,4 +108,4 @@ const ClientList = () => {
   );
 };
 
-export default ClientList;
+export default UserClientList;

@@ -2,7 +2,13 @@ import React from "react";
 import { Box, FormControl, Select, MenuItem } from "@mui/material";
 import { CiFilter } from "react-icons/ci";
 
-export default function BasicSelect({ label, value, options, onChange }) {
+export default function BasicSelect({
+  label,
+  value,
+  options,
+  onChange,
+  error,
+}) {
   return (
     <Box sx={{}}>
       <FormControl fullWidth>
@@ -12,12 +18,18 @@ export default function BasicSelect({ label, value, options, onChange }) {
           onChange={(e) => onChange(e.target.value)}
           IconComponent={CiFilter}
           sx={{
-            padding: "2px 8px",
-            border: "1px solid #0000003D",
-            borderRadius: "10px",
+            border: `1px solid ${error ? "#ef4444" : "#C7C7C7"}`,
+            padding: "8px 8px",
+            fontSize: "14px",
+            borderRadius: "4px",
             // color: "#C6D3CC",
             display: "flex",
             alignItems: "center",
+            "& .MuiSelect-select": {
+              padding: "2px 0px !important", // ↓ INNER PADDING
+              display: "flex",
+              alignItems: "center",
+            },
           }}
         >
           <MenuItem value="">{label}</MenuItem>

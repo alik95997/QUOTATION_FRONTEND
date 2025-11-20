@@ -1,10 +1,12 @@
 import React from "react";
 
-const Input = ({placeholder, }) => {
+const Input = ({ placeholder, value, type, onChange, error }) => {
   return (
     <input
-      className="w-full border border-[#00000014] rounded pl-10 pr-3 py-2 focus:outline-none"
-      type="text"
+      className={`w-full border ${
+        error ? "border-red-500" : "border-[#C7C7C7]"
+      }  rounded py-2 px-2  focus:outline-none`}
+      type={type}
       placeholder={placeholder}
       value={value}
       onChange={onChange}

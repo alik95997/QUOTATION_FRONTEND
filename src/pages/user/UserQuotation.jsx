@@ -3,7 +3,7 @@ import CustomerDetail from "../../components/NewInvoice/CustomerDetails";
 import OrderSources from "../../components/NewInvoice/OrderSources";
 import AddProduct from "../../components/NewInvoice/AddProduct";
 import PriceSummary from "../../components/NewInvoice/PriceSummary";
-import { validateStep } from "../../utils/validationStep";
+import validate from "../../utils/validate.js";
 import DashboardLayout from "../../components/dashboardLayout/DashboardLayout";
 import Button from "../../components/CustomButton/Button";
 import { Send, Save, EyeClosed, Eye } from "lucide-react";

@@ -1,4 +1,4 @@
-export const validateStep = (step, formData) => {
+const validate = (step, formData) => {
     let newErrors = {};
 
     // STEP 0 â€” Customer / Basic Info
@@ -20,6 +20,7 @@ export const validateStep = (step, formData) => {
             newErrors.email = "Invalid email format";
 
         if (!formData.phone) newErrors.phone = "Phone number is required";
+
     }
 
     if (step === 1) {
@@ -63,3 +64,4 @@ export const validateStep = (step, formData) => {
 
     return newErrors;
 };
+export default validate

@@ -1,6 +1,9 @@
 import React from "react";
 import { AlertCircle } from "lucide-react";
-
+import Label from "../label/Label";
+import Input from "../Input/Input";
+import BasicSelect from "../BasicSelect/BasicSelect";
+import ErrorMessage from "../Error/ErrorMessage";
 const CustomerDetail = ({ formData, setFormData, errors, setErrors }) => {
   return (
     <form className="space-y-4">
@@ -8,8 +11,9 @@ const CustomerDetail = ({ formData, setFormData, errors, setErrors }) => {
       <div className="grid grid-cols-2 gap-2">
         {/* Customer Name */}
         <div className="relative">
-          <label className="font-medium text-sm">Customer Name</label>
-          <input
+          <Label labelTitle="Customer Name" />
+          <Input
+            placeholder="Brown Martin"
             type="text"
             value={formData.customerName}
             onChange={(e) => {
@@ -17,69 +21,46 @@ const CustomerDetail = ({ formData, setFormData, errors, setErrors }) => {
               if (errors.customerName)
                 setErrors({ ...errors, customerName: "" });
             }}
-            className={`w-full mt-1 px-3 py-1.5 border-2 outline-none rounded-lg bg-gray-50 
-              ${errors.customerName ? "border-red-500" : "border-gray-300"}
-            `}
-            placeholder="Brown Martin"
+            error={!!errors.customerName}
           />
-
           {errors.customerName && (
-            <>
-              <AlertCircle className="absolute right-3 top-[2.45rem] text-red-500 w-4 h-4 animate-slideIn" />
-              <p className="text-red-600 text-[12px] mt-1 animate-fadeIn">
-                {errors.customerName}
-              </p>
-            </>
+            <ErrorMessage message={errors.customerName} />
           )}
         </div>
 
         {/* Company Name */}
         <div className="relative">
-          <label className="font-medium text-sm">Company Name</label>
-          <input
+          <Label labelTitle="Company Name" />
+          <Input
             type="text"
+            placeholder="Company Name"
             value={formData.companyName}
             onChange={(e) => {
               setFormData({ ...formData, companyName: e.target.value });
               if (errors.companyName) setErrors({ ...errors, companyName: "" });
             }}
-            className={`w-full mt-1 px-3 py-1.5 border-2  outline-none rounded-lg bg-gray-50 
-              ${errors.companyName ? "border-red-500" : "border-gray-300"}
-            `}
-            placeholder="Digital Thermal"
+            error={!!errors.companyName}
           />
-          {errors.companyName && (
-            <>
-              <AlertCircle className="absolute right-3 top-[2.45rem] animate-slideIn text-red-500 w-4 h-4" />
-              <p className="text-red-600 text-[12px] mt-1 animate-fadeIn">
-                {errors.companyName}
-              </p>
-            </>
-          )}
+          {errors.companyName && <ErrorMessage message={errors.companyName} />}
         </div>
       </div>
 
       {/* Delivery Address */}
       <div className="relative">
-        <label className="font-medium text-sm">Delivery Address</label>
-        <input
+        <Label labelTitle="Delivery Address" />
+        <Input
           type="text"
+          placeholder="Delivery Address"
           value={formData.address}
           onChange={(e) => {
             setFormData({ ...formData, address: e.target.value });
             if (errors.address) setErrors({ ...errors, address: "" });
           }}
-          className={`w-full mt-1 px-3 py-1.5 border-2 outline-none rounded-lg bg-gray-50 
-            ${errors.address ? "border-red-500" : "border-gray-300"}
-          `}
-          placeholder="901 Bagby, Houston"
+          error={!!errors.address}
         />
         {errors.address && (
           <>
-            <AlertCircle className="absolute right-3 top-[2.45rem] animate-slideIn text-red-500 w-4 h-4" />
-            <p className="text-red-600 text-[12px] mt-1 animate-fadeIn">
-              {errors.address}
-            </p>
+            <ErrorMessage message={errors.address} />
           </>
         )}
       </div>
@@ -88,77 +69,71 @@ const CustomerDetail = ({ formData, setFormData, errors, setErrors }) => {
       <div className="grid grid-cols-3 gap-3">
         {/* City */}
         <div className="relative">
-          <label className="font-medium text-sm">City</label>
-          <input
-            type="text"
+          <Label labelTitle="City" />
+          <BasicSelect
+            label="City"
             value={formData.city}
-            onChange={(e) => {
-              setFormData({ ...formData, city: e.target.value });
+            options={[
+              "Karachi",
+              "Lahore",
+              "Islamabad",
+              "Multan",
+              "Faisalabad",
+              "Hyderabad",
+              "Quetta",
+              "Peshawar",
+              "Rawalpindi",
+              "Sialkot",
+            ]}
+            onChange={(value) => {
+              setFormData({ ...formData, city: value });
               if (errors.city) setErrors({ ...errors, city: "" });
             }}
-            className={`w-full mt-1 px-3 py-1.5 border-2 outline-none rounded-lg bg-gray-50 
-              ${errors.city ? "border-red-500" : "border-gray-300"}
-            `}
-            placeholder="Houston"
+            error={!!errors.city}
           />
-          {errors.city && (
-            <>
-              <AlertCircle className="absolute right-3 top-[2.45rem] animate-slideIn text-red-500 w-4 h-4" />
-              <p className="text-red-600 text-[12px] mt-1 animate-fadeIn">
-                {errors.city}
-              </p>
-            </>
-          )}
+
+          {errors.city && <ErrorMessage message={errors.city} />}
         </div>
 
         {/* State */}
         <div className="relative">
-          <label className="font-medium text-sm">State</label>
-          <input
-            type="text"
+          <Label labelTitle="State" />
+          <BasicSelect
+            label="State"
             value={formData.state}
-            onChange={(e) => {
-              setFormData({ ...formData, state: e.target.value });
+            options={[
+              "Sindh",
+              "Punjab",
+              "Balochistan",
+              "Khyber Pakhtunkhwa",
+              "Gilgit-Baltistan",
+              "Azad Kashmir",
+            ]}
+            onChange={(value) => {
+              setFormData({ ...formData, state: value });
               if (errors.state) setErrors({ ...errors, state: "" });
             }}
-            className={`w-full mt-1 px-3 py-1.5 border-2 outline-none rounded-lg bg-gray-50 
-              ${errors.state ? "border-red-500" : "border-gray-300"}
-            `}
-            placeholder="Texas"
+            error={!!errors.state}
           />
-          {errors.state && (
-            <>
-              <AlertCircle className="absolute right-3 top-[2.45rem] animate-slideIn text-red-500 w-4 h-4" />
-              <p className="text-red-600 text-[12px] mt-1 animate-fadeIn">
-                {errors.state}
-              </p>
-            </>
-          )}
+
+          {errors.state && <ErrorMessage message={errors.state} />}
         </div>
 
         {/* Postal Code */}
         <div className="relative">
-          <label className="font-medium text-sm">Postal Code</label>
-          <input
+          <Label labelTitle="Postal Code" />
+
+          <Input
+            placeholder="Postal Code"
             type="text"
             value={formData.postalCode}
             onChange={(e) => {
               setFormData({ ...formData, postalCode: e.target.value });
               if (errors.postalCode) setErrors({ ...errors, postalCode: "" });
             }}
-            className={`w-full mt-1 px-3 py-1.5 border-2 outline-none rounded-lg bg-gray-50 
-              ${errors.postalCode ? "border-red-500" : "border-gray-300"}
-            `}
-            placeholder="77002"
+            error={!!errors.postalCode}
           />
-          {errors.postalCode && (
-            <>
-              <AlertCircle className="absolute right-3 top-[2.45rem] animate-slideIn text-red-500 w-4 h-4" />
-              <p className="text-red-600 text-[12px] mt-1 animate-fadeIn">
-                {errors.postalCode}
-              </p>
-            </>
-          )}
+          {errors.postalCode && <ErrorMessage message={errors.postalCode} />}
         </div>
       </div>
 
@@ -166,60 +141,43 @@ const CustomerDetail = ({ formData, setFormData, errors, setErrors }) => {
       <div className="grid grid-cols-2 gap-3">
         {/* Email */}
         <div className="relative">
-          <label className="font-medium text-sm">Email</label>
-          <input
+          <Label labelTitle="Email" />
+          <Input
             type="email"
+            placeholder="thomasshelby@gmail.com"
             value={formData.email}
             onChange={(e) => {
               setFormData({ ...formData, email: e.target.value });
               if (errors.email) setErrors({ ...errors, email: "" });
             }}
-            className={`w-full mt-1 px-3 py-1.5 border-2 outline-none rounded-lg bg-gray-50 
-              ${errors.email ? "border-red-500" : "border-gray-300"}
-            `}
-            placeholder="thomasshelby@gmail.com"
+            error={!!errors.email}
           />
-          {errors.email && (
-            <>
-              <AlertCircle className="absolute right-3 animate-slideIn top-[2.45rem] text-red-500 w-4 h-4" />
-              <p className="text-red-600 text-[12px] mt-1 animate-fadeIn">
-                {errors.email}
-              </p>
-            </>
-          )}
+          {errors.email && <ErrorMessage message={errors.email} />}
         </div>
 
         {/* Phone */}
         <div className="relative">
-          <label className="font-medium text-sm">Phone Number</label>
-          <input
+          <Label labelTitle="Phone Number" />
+          <Input
+            placeholder="+92 12345678"
             type="text"
             value={formData.phone}
             onChange={(e) => {
               setFormData({ ...formData, phone: e.target.value });
               if (errors.phone) setErrors({ ...errors, phone: "" });
             }}
-            className={`w-full mt-1 px-3 py-1.5 border-2 outline-none rounded-lg bg-gray-50 
-              ${errors.phone ? "border-red-500" : "border-gray-300"}
-            `}
-            placeholder="+1-281-658-5421"
+            error={!!errors.phone}
           />
 
-          {errors.phone && (
-            <>
-              <AlertCircle className="absolute right-3 top-[2.45rem] animate-slideIn text-red-500 w-4 h-4" />
-              <p className="text-red-600 text-[12px] outline-none mt-1 animate-fadeIn">
-                {errors.phone}
-              </p>
-            </>
-          )}
+          {errors.phone && <ErrorMessage message={errors.phone} />}
         </div>
       </div>
 
       {/* Special Instructions */}
       <div className="relative">
-        <label className="font-medium text-sm">Special Instructions</label>
-        <input
+        <Label labelTitle="Special Instruction" />
+        <Input
+          placeholder="e.g Send product pictures"
           type="text"
           value={formData.specialInstruction}
           onChange={(e) => {
@@ -230,18 +188,10 @@ const CustomerDetail = ({ formData, setFormData, errors, setErrors }) => {
             if (errors.specialInstruction)
               setErrors({ ...errors, specialInstruction: "" });
           }}
-          className={`w-full mt-1 px-3 py-1.5 border-2 outline-none rounded-lg bg-gray-50 
-            ${errors.specialInstruction ? "border-red-500" : "border-gray-300"}
-          `}
-          placeholder="e.g., Leave at the door"
+          error={!!errors.specialInstruction}
         />
         {errors.specialInstruction && (
-          <>
-            <AlertCircle className="absolute right-3 top-[2.45rem] animate-slideIn text-red-500 w-4 h-4" />
-            <p className="text-red-600 text-[12px] mt-1 animate-fadeIn">
-              {errors.specialInstruction}
-            </p>
-          </>
+          <ErrorMessage message={errors.specialInstruction} />
         )}
       </div>
     </form>
